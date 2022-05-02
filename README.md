@@ -1,15 +1,22 @@
 # Socket.io with Typescript
 
-## Installation
+## Install & Run
+
+Will run both client and server in parallel
+
+1. `npm install`
+2. `npm start`
+
+### Installation in two tabs
 
 Open two terminals and run the following commands
 
-1. `cd client && npm i && npm start`
-2. `cd server && npm i && npm start`
+1. `npm run install`
+2. `npm run server-install`
 
-## Run project
+### Run project in two tabs
 
 Open two terminals and run the following commands
 
-1. `cd client && npm start`
-2. `cd server && npm start`
+1. `npm run client`
+2. `npm run server`
