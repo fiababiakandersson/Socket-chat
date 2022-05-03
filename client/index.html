@@ -58,12 +58,32 @@
     #messages>li:nth-child(odd) {
       background: #efefef;
     }
+
+    #container{
+      display: flex;
+      width: 100%;
+    }
+
+    #room-menu{
+      background-color: antiquewhite;
+      width: 20%;
+    }
+
+    #content-div{
+      background-color: aliceblue;
+      width: 80%;
+    }
+
   </style>
 
   <script defer type="module" src="/src/main.ts"></script>
 </head>
 
 <body>
+  <div id="container">
+    <div id="room-menu"></div>
+  <div id="content-div"></div>
+  </div>
 </body>
 
 </html>
