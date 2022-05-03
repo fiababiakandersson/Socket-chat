@@ -13,8 +13,8 @@ window.addEventListener("load", () => {
 })
 
 function renderNameInput() {
-  document.body.innerHTML = "";
-
+  let contentDiv = document.getElementById('content-div')
+  
   let container = document.createElement("div");
   container.classList.add("inputNameContainer");
 
@@ -26,22 +26,23 @@ function renderNameInput() {
   let nameInputBtn = document.createElement("button");
   nameInputBtn.innerText = "Save";
   nameInputBtn.addEventListener("click", () => {
+    container.innerHTML = ""
     socket.auth = { username: nameInput.value };
     socket.connect();
   });
 
+  contentDiv?.append(container)
   container.append(nameInputHeader, nameInput, nameInputBtn);
-  document.body.append(container);
 }
 
 function renderRoomInput() {
-  document.body.innerHTML = "";
-
+  
+  let menu = document.getElementById('room-menu')
   let container = document.createElement("div");
   container.classList.add("inputRoomContainer");
 
   let roomInputHeader = document.createElement("h3");
-  roomInputHeader.innerText = "Room here: ";
+  roomInputHeader.innerText = "Create room: ";
 
   let roomInput = document.createElement("input");
 
@@ -57,7 +58,7 @@ function renderRoomInput() {
   });
 
   container.append(roomInputHeader, roomInput, roomInputBtn);
-  document.body.append(container);
+  menu?.append(container)
 
 };
 
