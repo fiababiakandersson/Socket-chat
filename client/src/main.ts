@@ -62,7 +62,7 @@ function usernameInMenu() {
   usernameContainer.style.display = "initial"
 
   const nameContainer = document.getElementById('usernameContainer')
-  const welcomeText = document.createElement("h1")
+  const welcomeText = document.createElement("h2")
   welcomeText.innerText = `${joinedUsername}`;
 
   nameContainer?.append(welcomeText)
