@@ -6,13 +6,14 @@ import { ServerToClientEvents, ClientToServerEvents } from "../../types";
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io({"autoConnect": false});
 
-let username : string;
+let joinedUsername : string;  // changed
 let joinedRoom : string;
 
 
 //hämtar element för att kunna dölja
 const roomContainer = document.getElementById('room-container') as HTMLElement
 const addRoom = document.getElementById('add-room') as HTMLElement
+const usernameContainer = document.getElementById('usernameContainer') as HTMLElement
 
 window.addEventListener("load", () => {
   renderNameInput();
@@ -27,6 +28,7 @@ function renderNameInput() {
   //roomContainer.innerHTML = ""
   roomContainer.style.display = "none"
   addRoom.style.display = "none"
+  usernameContainer.style.display = "none"
   let contentDiv = document.getElementById('content-div')
   
   let container = document.createElement("div");
@@ -38,7 +40,6 @@ function renderNameInput() {
   let nameInput = document.createElement("input");
   nameInput.id = 'nameInput';
 
-  
   let nameInputBtn = document.createElement("button");
   nameInputBtn.classList.add('nameBtn');
   nameInputBtn.innerText = "Start Messaging";
@@ -48,10 +49,22 @@ function renderNameInput() {
     socket.connect();
   });
 
-
   contentDiv?.append(container);
   //nameInput.append(badge);
   container.append(nameInputHeader, nameInput, nameInputBtn);
+}
+
+/**
+ * function to display username in menu
+ */
+
+function usernameInMenu() {
+  usernameContainer.style.display = "initial"
+
+  let usernameheading = document.createElement("h2");
+  usernameheading.innerText = `${joinedUsername}`
+  console.log("look at me: ", joinedUsername)  // added 
+ 
 }
 
 /**
@@ -158,7 +171,6 @@ socket.on("joined", (room) => {
   renderForm();
 });
 
-
 socket.on('message', (message, from) => {
   console.log(message, from.username);
 
@@ -178,8 +190,9 @@ socket.on('message', (message, from) => {
 
 socket.on("connected", (username) => {
   console.log(username);
-  username = username;
+  joinedUsername = username; // changed
 
+  usernameInMenu();
   renderRoomInput();
 });
 
