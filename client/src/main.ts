@@ -61,10 +61,14 @@ function renderNameInput() {
 function usernameInMenu() {
   usernameContainer.style.display = "initial"
 
-  let usernameheading = document.createElement("h2");
-  usernameheading.innerText = `${joinedUsername}`
+  const nameContainer = document.getElementById('usernameContainer')
+  const welcomeText = document.createElement("h1")
+  welcomeText.innerText = `${joinedUsername}`;
+
+  nameContainer?.append(welcomeText)
+
   console.log("look at me: ", joinedUsername)  // added 
- 
+
 }
 
 /**
