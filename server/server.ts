@@ -22,9 +22,7 @@ io.on("connection", (socket) => {
     socket.emit('roomList', getRooms(io));
     //
   };
-
-  registerChatHandler(io, socket)
-  
+  registerChatHandler(io, socket); 
 });
 
 io.listen(4000);

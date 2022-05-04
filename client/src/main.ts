@@ -1,4 +1,6 @@
 import "./style.css";
+import './style/nameForm.css';
+import './style/roomMenu.css';
 import { io, Socket } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "../../types";
 
@@ -12,6 +14,10 @@ window.addEventListener("load", () => {
   //renderRoomInput();
 })
 
+
+/**
+ * function to render name input
+ */
 function renderNameInput() {
   let contentDiv = document.getElementById('content-div')
   
@@ -22,19 +28,27 @@ function renderNameInput() {
   nameInputHeader.innerText = "Your name here: ";
 
   let nameInput = document.createElement("input");
+  nameInput.id = 'nameInput';
 
+  
   let nameInputBtn = document.createElement("button");
-  nameInputBtn.innerText = "Save";
+  nameInputBtn.classList.add('nameBtn');
+  nameInputBtn.innerText = "Start Messaging";
   nameInputBtn.addEventListener("click", () => {
     container.innerHTML = ""
     socket.auth = { username: nameInput.value };
     socket.connect();
   });
 
-  contentDiv?.append(container)
+
+  contentDiv?.append(container);
+  //nameInput.append(badge);
   container.append(nameInputHeader, nameInput, nameInputBtn);
 }
 
+/**
+ * function to render room input
+ */
 function renderRoomInput() {
   
   let menu = document.getElementById('room-menu')
@@ -62,6 +76,9 @@ function renderRoomInput() {
 
 };
 
+/**
+ * function to render message input
+ */
 function renderForm() {
    document.body.innerHTML = "";
 
@@ -79,7 +96,7 @@ function renderForm() {
       if(chatInput.value.length) { 
         socket.emit("message", chatInput.value, joinedRoom);
       } else {
-        console.log('Not allowes to send empty messages!');  
+        console.log('Not allowed to send empty messages!');  
       };
    })
 
@@ -89,6 +106,7 @@ function renderForm() {
    chatForm.append(chatInput, sendBtn);
    document.body.append(chatList, chatForm);
 };
+
 
 socket.on("connect_error", (err) => {
   if(err.message == "Invalid username") {
@@ -101,6 +119,9 @@ socket.on('_error', (errorMessage) => {
   
 });
 
+/**
+ * function to render rooms
+ */
 socket.on("roomList", (rooms) => {
   //Skapa gränssnitt med att kunna skapa rum
   //Skapa gränssnitt med rum, lista, med onClick event på rum som skickar med join på det rummet
