@@ -1,4 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 #room-menu {
     background-color: #797595;
 }
+
+/* Style for username in menu */
+h2 {
+display: flex;
+justify-content: center;
+font-family: roboto;
+font-weight: 400;
+font-size: 14px;
+color: white;
+}
+
