@@ -9,6 +9,11 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io({"autoConn
 let username : string;
 let joinedRoom : string;
 
+
+//hämtar element för att kunna dölja
+const roomContainer = document.getElementById('room-container') as HTMLElement
+const addRoom = document.getElementById('add-room') as HTMLElement
+
 window.addEventListener("load", () => {
   renderNameInput();
   //renderRoomInput();
@@ -19,6 +24,9 @@ window.addEventListener("load", () => {
  * function to render name input
  */
 function renderNameInput() {
+  //roomContainer.innerHTML = ""
+  roomContainer.style.display = "none"
+  addRoom.style.display = "none"
   let contentDiv = document.getElementById('content-div')
   
   let container = document.createElement("div");
@@ -50,10 +58,14 @@ function renderNameInput() {
  * function to render room input
  */
 function renderRoomInput() {
-  
-  let menu = document.getElementById('room-menu')
+  roomContainer.style.display = "initial"
+  addRoom.style.display = "initial"
+  const addRoomIcon = document.getElementById('add-room-icon')
+
+  addRoomIcon?.addEventListener("click", () => {
+
   let container = document.createElement("div");
-  container.classList.add("inputRoomContainer");
+  //container.classList.add("inputRoomContainer");
 
   let roomInputHeader = document.createElement("h3");
   roomInputHeader.innerText = "Create room: ";
@@ -72,7 +84,10 @@ function renderRoomInput() {
   });
 
   container.append(roomInputHeader, roomInput, roomInputBtn);
-  menu?.append(container)
+  addRoom.append(container)
+
+  })
+  
 
 };
 
@@ -80,8 +95,8 @@ function renderRoomInput() {
  * function to render message input
  */
 function renderForm() {
-   document.body.innerHTML = "";
-
+   //document.body.innerHTML = "";
+  const contentDiv = document.getElementById('content-div')
    let chatList = document.createElement('ul');
    chatList.id = "messages";
 
@@ -104,7 +119,7 @@ function renderForm() {
    sendBtn.innerText = 'Send';
 
    chatForm.append(chatInput, sendBtn);
-   document.body.append(chatList, chatForm);
+   contentDiv?.append(chatList, chatForm);
 };
 
 
@@ -126,6 +141,14 @@ socket.on("roomList", (rooms) => {
   //Skapa gränssnitt med att kunna skapa rum
   //Skapa gränssnitt med rum, lista, med onClick event på rum som skickar med join på det rummet
   console.log(rooms);
+  let roomContainer = document.getElementById('room-container')
+  for (let room of rooms) {
+    const roomName = document.createElement('p')
+    roomName.classList.add('room-name')
+    roomName.innerText = room;
+    roomContainer?.append(roomName)
+  }
+  
   
 });
 
