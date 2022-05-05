@@ -20,7 +20,6 @@ io.on("connection", (socket) => {
   if (socket.data.username) {
     socket.emit("connected", socket.data.username);
     socket.emit('roomList', getRooms(io));
-    //
   };
   registerChatHandler(io, socket); 
 });
