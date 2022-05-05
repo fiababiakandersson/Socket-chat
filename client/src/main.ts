@@ -10,11 +10,6 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io({"autoConn
 let joinedUsername : string;  // changed
 let joinedRoom : string;
 
-let username: string;
-let joinedRoom: string;
-
-
-
 const roomContainer = document.getElementById('room-container') as HTMLElement
 const addRoom = document.getElementById('add-room') as HTMLElement
 const roomMenu = document.getElementById("room-menu") as HTMLElement;
@@ -22,24 +17,19 @@ const usernameContainer = document.getElementById('usernameContainer') as HTMLEl
 
 window.addEventListener("load", () => {
   renderNameInput();
-  renderRoomInput();
 })
-
-
 
 /**
  * function to render name input
  */
 function renderNameInput() {
-  //roomContainer.innerHTML = ""
-
   roomContainer.style.display = "none"
   addRoom.style.display = "none"
   usernameContainer.style.display = "none"
   let contentDiv = document.getElementById('content-div')
   
   let container = document.createElement("div");
-  container.id = 'Rcontainer';
+  //container.id = 'Rcontainer';
   container.classList.add("inputNameContainer");
 
   let nameInputHeader = document.createElement("h3");
@@ -122,7 +112,8 @@ function renderRoomInput() {
   addRoom.append(container)
   roomMenu.append(addRoom)
 
-
+  })
+}
      
      
      /**
@@ -131,7 +122,7 @@ function renderRoomInput() {
 let chatInput = document.createElement("input"); //tillsvidare utanför
 function renderForm() {
   //document.body.innerHTML = "";
-  const contentDiv = document.getElementById("content-div");
+  let contentDiv = document.getElementById("content-div");
   let chatList = document.createElement("ul");
   chatList.id = "messages";
   chatInput.autocomplete = "off";
