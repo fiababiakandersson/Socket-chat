@@ -10,12 +10,12 @@
 
 .addRoomContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     position: absolute;
     width: 100%;
-    bottom: 0;
-    right: 0;
+    bottom: 1rem;
+    left: 0;
 }
 
 .roomInputBtn {
@@ -37,13 +37,11 @@
 }
 
 .roomInput {
-    margin: 1.5rem;
-    margin-left: 4rem;
     background-color: rgb(224, 224, 224);
     padding: .8rem;
-    min-width: 190px;
     border-radius: 20px;
     border: none;
+    margin-left: 2rem;
 }
 
 .roomInput:focus {
@@ -58,7 +56,6 @@
 
 #room-menu {
     background-color: #797595;
-
     position: relative;
 }
 
@@ -66,9 +63,9 @@
    font-size: 2.2rem;
    position: absolute;
    color: #f5aebc;
-   bottom: 0;
-   padding: 1.5rem;
-   left: 0;
+    bottom: 0;
+   margin-bottom: .5rem;
+   left: 1rem; 
 }
 
 #add-room-icon:hover {

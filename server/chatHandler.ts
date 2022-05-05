@@ -29,4 +29,11 @@ export default (io: Server, socket: Socket) => {
       }); //socket.id för privat chat
     });
 
+    socket.on('typing', () =>{
+    socket.broadcast.emit('typing', socket.data.username);
+   })
+
+   socket.on('nottyping', () =>{
+    socket.broadcast.emit('nottyping', socket.data.username);
+   }) 
 }
