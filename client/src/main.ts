@@ -10,8 +10,11 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io({"autoConn
 let joinedUsername : string;  // changed
 let joinedRoom : string;
 
+let username: string;
+let joinedRoom: string;
 
-//hämtar element för att kunna dölja
+
+
 const roomContainer = document.getElementById('room-container') as HTMLElement
 const addRoom = document.getElementById('add-room') as HTMLElement
 const roomMenu = document.getElementById("room-menu") as HTMLElement;
@@ -23,11 +26,13 @@ window.addEventListener("load", () => {
 })
 
 
+
 /**
  * function to render name input
  */
 function renderNameInput() {
   //roomContainer.innerHTML = ""
+
   roomContainer.style.display = "none"
   addRoom.style.display = "none"
   usernameContainer.style.display = "none"
@@ -41,14 +46,16 @@ function renderNameInput() {
   nameInputHeader.innerText = "Your name here: ";
 
   let nameInput = document.createElement("input");
+
   nameInput.autocomplete = "off";
   nameInput.id = 'nameInput';
 
+
   let nameInputBtn = document.createElement("button");
-  nameInputBtn.classList.add('nameBtn');
+  nameInputBtn.classList.add("nameBtn");
   nameInputBtn.innerText = "Start Messaging";
   nameInputBtn.addEventListener("click", () => {
-    container.innerHTML = ""
+    container.innerHTML = "";
     socket.auth = { username: nameInput.value };
     socket.connect();
   });
@@ -79,12 +86,12 @@ function usernameInMenu() {
  * function to render room input
  */
 function renderRoomInput() {
-  roomContainer.style.display = "initial"
-  addRoom.style.display = "initial"
-  const addRoomIcon = document.getElementById('add-room-icon')
+  roomContainer.style.display = "initial";
+  addRoom.style.display = "initial";
+  const addRoomIcon = document.getElementById("add-room-icon");
 
   addRoomIcon?.addEventListener("click", () => {
-
+    
   let container = document.createElement("div");
   container.classList.add('addRoomContainer');
   //container.classList.add("inputRoomContainer");
@@ -115,54 +122,100 @@ function renderRoomInput() {
   addRoom.append(container)
   roomMenu.append(addRoom)
 
-  })
-  
 
-};
-
-/**
+     
+     
+     /**
  * function to render message input
  */
+let chatInput = document.createElement("input"); //tillsvidare utanför
 function renderForm() {
-   //document.body.innerHTML = ""
+  //document.body.innerHTML = "";
+  const contentDiv = document.getElementById("content-div");
+  let chatList = document.createElement("ul");
+  chatList.id = "messages";
+  chatInput.autocomplete = "off";
+  chatInput.id = "input";
+  
 
-  const contentDiv = document.getElementById('content-div')
-   let chatList = document.createElement('ul');
-   chatList.id = "messages";
+  // username prints out when someone's typing
+  const isTyping = document.createElement("p");
+  chatInput.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter") {
+      socket.emit("typing");
+      console.log("skriver");
+    }
+  });
 
-   let chatInput = document.createElement('input');
-   chatInput.autocomplete = "off";
-   chatInput.id = 'input';
+  
+  chatInput.addEventListener("keyup", function () {
+     let timer;
+      const waitTime = 3000;
+     timer = setTimeout (() => {
+      socket.emit("nottyping");
+      console.log("skriver inte");
+}, waitTime)
+  });
 
-   let chatForm = document.createElement('form');
-   chatForm.id = 'form';
-   chatForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if(chatInput.value.length) { 
-        socket.emit("message", chatInput.value, joinedRoom);
-      } else {
-        console.log('Not allowed to send empty messages!');  
-      };
-   })
+  socket.on("typing", (username) => {
+    isTyping.innerText = username + " is typing..";
+    contentDiv?.append(isTyping);
+  });
 
-   let sendBtn = document.createElement('button');
-   sendBtn.innerText = 'Send';
+   socket.on("nottyping", (username) => {
+     
+     
+     
+    /* let timer;
+    const waitTime = 3000; */
 
-   chatForm.append(chatInput, sendBtn);
-   contentDiv?.append(chatList, chatForm);
-   
-};
+   /*  timer = setTimeout (() => { */
+      console.log('key släppt')
+      console.log(username, 'slutat skriva')
+      isTyping.style.display = "none"
+/* }, waitTime) */
 
+
+  })
+
+  
+ /*  chatInput.addEventListener("keyup", function () {
+    let timer;
+    const waitTime = 3000;
+
+    timer = setTimeout (() => {
+      console.log('key släppt')
+    }, waitTime)
+  }) */
+
+  let chatForm = document.createElement("form");
+  chatForm.id = "form";
+  chatForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (chatInput.value.length) {
+      socket.emit("message", chatInput.value, joinedRoom);
+    } else {
+      console.log("Not allowed to send empty messages!");
+    }
+    console.log(chatInput.value)
+  });
+
+
+  let sendBtn = document.createElement("button");
+  sendBtn.innerText = "Send";
+  chatForm.append(chatInput, sendBtn);
+  contentDiv?.append(chatList, chatForm);
+  
+}
 
 socket.on("connect_error", (err) => {
-  if(err.message == "Invalid username") {
-    console.log('You typed an invalid username, try again');  
-  };
+  if (err.message == "Invalid username") {
+    console.log("You typed an invalid username, try again");
+  }
 });
 
-socket.on('_error', (errorMessage) => {
+socket.on("_error", (errorMessage) => {
   console.log(errorMessage);
-  
 });
 
 /**
@@ -172,39 +225,37 @@ socket.on("roomList", (rooms) => {
   //Skapa gränssnitt med att kunna skapa rum
   //Skapa gränssnitt med rum, lista, med onClick event på rum som skickar med join på det rummet
   console.log(rooms);
+
+  
   let roomContainer = document.getElementById('room-container')
   roomContainer?.classList.add('roomContainer')
-  for (let room of rooms) {
     const roomName = document.createElement('p')
     //roomName.onclick()
     roomName.classList.add('room-name')
+  for (let room of rooms) {
     roomName.innerText = room;
-    roomContainer?.append(roomName)
+    roomContainer?.append(roomName);
   }
-  
-  
 });
-
 
 socket.on("joined", (room) => {
   joinedRoom = room;
   renderForm();
 });
 
+
 socket.on('message', (message, from) => {
+  chatInput.value = ""
+
   console.log(message, from.username);
-
-  const chatItem = document.createElement('li');
+  const chatItem = document.createElement("li");
   chatItem.textContent = from.username + ": " + message;
-
-  const messageList = document.getElementById('messages');
-
-  if(messageList) {
+  const messageList = document.getElementById("messages");
+  if (messageList) {
     messageList.append(chatItem);
   }
   window.scrollTo(0, document.body.scrollHeight);
 });
-
 
 socket.on("connected", (username) => {
   console.log(username);
