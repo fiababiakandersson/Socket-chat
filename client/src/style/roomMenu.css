@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 .logo {
     max-width: 13rem;
@@ -57,6 +58,7 @@
 
 #room-menu {
     background-color: #797595;
+
     position: relative;
 }
 
@@ -72,4 +74,16 @@
 #add-room-icon:hover {
     color: #e2a1ae;
     cursor: pointer;
+}
+
+}
+
+/* Style for username in menu */
+h2 {
+display: flex;
+justify-content: center;
+font-family: roboto;
+font-weight: 400;
+font-size: 14px;
+color: white;
 }

@@ -7,7 +7,7 @@ import { ServerToClientEvents, ClientToServerEvents } from "../../types";
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io({"autoConnect": false});
 
-let username : string;
+let joinedUsername : string;  // changed
 let joinedRoom : string;
 
 
@@ -15,6 +15,7 @@ let joinedRoom : string;
 const roomContainer = document.getElementById('room-container') as HTMLElement
 const addRoom = document.getElementById('add-room') as HTMLElement
 const roomMenu = document.getElementById("room-menu") as HTMLElement;
+const usernameContainer = document.getElementById('usernameContainer') as HTMLElement
 
 window.addEventListener("load", () => {
   renderNameInput();
@@ -29,6 +30,7 @@ function renderNameInput() {
   //roomContainer.innerHTML = ""
   roomContainer.style.display = "none"
   addRoom.style.display = "none"
+  usernameContainer.style.display = "none"
   let contentDiv = document.getElementById('content-div')
   
   let container = document.createElement("div");
@@ -42,7 +44,6 @@ function renderNameInput() {
   nameInput.autocomplete = "off";
   nameInput.id = 'nameInput';
 
-  
   let nameInputBtn = document.createElement("button");
   nameInputBtn.classList.add('nameBtn');
   nameInputBtn.innerText = "Start Messaging";
@@ -52,10 +53,26 @@ function renderNameInput() {
     socket.connect();
   });
 
-
   contentDiv?.append(container);
   //nameInput.append(badge);
   container.append(nameInputHeader, nameInput, nameInputBtn);
+}
+
+/**
+ * function to display username in menu
+ */
+
+function usernameInMenu() {
+  usernameContainer.style.display = "initial"
+
+  const nameContainer = document.getElementById('usernameContainer')
+  const welcomeText = document.createElement("h2")
+  welcomeText.innerText = `${joinedUsername}`;
+
+  nameContainer?.append(welcomeText)
+
+  console.log("look at me: ", joinedUsername)  // added 
+
 }
 
 /**
@@ -174,7 +191,6 @@ socket.on("joined", (room) => {
   renderForm();
 });
 
-
 socket.on('message', (message, from) => {
   console.log(message, from.username);
 
@@ -192,8 +208,9 @@ socket.on('message', (message, from) => {
 
 socket.on("connected", (username) => {
   console.log(username);
-  username = username;
+  joinedUsername = username; // changed
 
+  usernameInMenu();
   renderRoomInput();
 });
 
