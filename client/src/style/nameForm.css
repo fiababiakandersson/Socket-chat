@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Mulish:wght@300;400&display=swap');
 
- .inputNameContainer {
+ 
+
+.inputNameContainer {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 2rem;
-} 
+    /* height: 100vh; */
+  }
 
 .nameBtn {
     letter-spacing: 1px;

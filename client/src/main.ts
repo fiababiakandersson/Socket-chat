@@ -2,6 +2,7 @@ import "./style/style.css";
 import './style/nameForm.css';
 import './style/roomMenu.css';
 import "./style/roomList.css";
+import "./style/chat.css";
 import { io, Socket } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "../../types";
 
@@ -161,41 +162,10 @@ function renderForm() {
   });
 
    socket.on("nottyping", (username) => {
-     
-     
-     
-    /* let timer;
-    const waitTime = 3000; */
-
-   /*chatForm.append(chatInput, sendBtn);
-   contentDiv?.append( chatList, chatForm);
-   
-};*/
-
-
-// socket.on("connect_error", (err) => {
-//   if(err.message == "Invalid username") {
-//     console.log('You typed an invalid username, try again');  
-//   };
-// });
-   /*  timer = setTimeout (() => { */
       console.log('key släppt')
       console.log(username, 'slutat skriva')
       isTyping.style.display = "none"
-/* }, waitTime) */
-
-
-  })
-
-  
- /*  chatInput.addEventListener("keyup", function () {
-    let timer;
-    const waitTime = 3000;
-
-    timer = setTimeout (() => {
-      console.log('key släppt')
-    }, waitTime)
-  }) */
+})
 
   let chatForm = document.createElement("form");
   chatForm.id = "form";
@@ -237,9 +207,9 @@ socket.on("roomList", (rooms) => {
   }
 
   roomContainer?.classList.add('roomContainer')
+  for (let room of rooms) {
     const roomName = document.createElement('p')
     roomName.classList.add('room-name')
-  for (let room of rooms) {
     roomName.innerText = room;
     roomContainer?.append(roomName)
      roomName.addEventListener('click', () => {
