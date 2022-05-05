@@ -1,21 +1,21 @@
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
+} */
 
-.inputNameContainer {
+/* .inputNameContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1rem;
   height: 100vh;
-}
-
+} */
+ /*
 body {
   margin: 0;
   padding-bottom: 3rem;
@@ -26,9 +26,7 @@ body {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
   position: fixed;
-  /*  bottom: 0;
-  left: 0;
-  right: 0; */
+ 
   display: flex;
   height: 3rem;
   box-sizing: border-box;
@@ -79,14 +77,14 @@ body {
 #room-menu{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  
   background-color: antiquewhite;
   width: 40%;
 }
 
 #room-container {
   display: flex;
-  /* justify-content: center; */
+  
   align-items: center;
   padding: .5rem;
 }
@@ -111,4 +109,4 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
+} */
