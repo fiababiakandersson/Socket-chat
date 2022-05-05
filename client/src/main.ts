@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style/style.css";
 import './style/nameForm.css';
 import './style/roomMenu.css';
 import "./style/roomList.css";
@@ -15,6 +15,7 @@ const addRoom = document.getElementById('add-room') as HTMLElement
 const roomMenu = document.getElementById("room-menu") as HTMLElement;
 const usernameContainer = document.getElementById('usernameContainer') as HTMLElement
 
+
 window.addEventListener("load", () => {
   renderNameInput();
 })
@@ -29,7 +30,7 @@ function renderNameInput() {
   let contentDiv = document.getElementById('content-div')
   
   let container = document.createElement("div");
-  //container.id = 'Rcontainer';
+  container.id = 'container';
   container.classList.add("inputNameContainer");
 
   let nameInputHeader = document.createElement("h3");
@@ -44,8 +45,16 @@ function renderNameInput() {
   let nameInputBtn = document.createElement("button");
   nameInputBtn.classList.add("nameBtn");
   nameInputBtn.innerText = "Start Messaging";
+
   nameInputBtn.addEventListener("click", () => {
-    container.innerHTML = "";
+
+    //checks if name input empty, if true you can not submit name
+    if ( nameInput.value === '' ) {
+      
+      return;
+    }
+
+    container.innerHTML = ""
     socket.auth = { username: nameInput.value };
     socket.connect();
   });
@@ -68,7 +77,7 @@ function usernameInMenu() {
 
   nameContainer?.append(welcomeText)
 
-  console.log("look at me: ", joinedUsername)  // added 
+ // console.log("look at me: ", joinedUsername)  // added 
 
 }
 
@@ -76,10 +85,11 @@ function usernameInMenu() {
  * function to render room input
  */
 function renderRoomInput() {
-  roomContainer.style.display = "initial";
-  addRoom.style.display = "initial";
-  const addRoomIcon = document.getElementById("add-room-icon");
+  roomContainer.style.display = "initial"
+  addRoom.style.display = "initial"
 
+  const addRoomIcon = document.getElementById('add-room-icon')
+  
   addRoomIcon?.addEventListener("click", () => {
     
   let container = document.createElement("div");
@@ -104,17 +114,14 @@ function renderRoomInput() {
       console.log("Invalid name of room");
       return;
     }
+    console.log(room)
     socket.emit("join", room);
   });
-
-  
   container.append(roomInputHeader, roomInput, roomInputBtn, addRoomIcon);
   addRoom.append(container)
   roomMenu.append(addRoom)
-
   })
-}
-     
+}; 
      
      /**
  * function to render message input
@@ -160,6 +167,17 @@ function renderForm() {
     /* let timer;
     const waitTime = 3000; */
 
+   /*chatForm.append(chatInput, sendBtn);
+   contentDiv?.append( chatList, chatForm);
+   
+};*/
+
+
+// socket.on("connect_error", (err) => {
+//   if(err.message == "Invalid username") {
+//     console.log('You typed an invalid username, try again');  
+//   };
+// });
    /*  timer = setTimeout (() => { */
       console.log('key släppt')
       console.log(username, 'slutat skriva')
@@ -213,25 +231,37 @@ socket.on("_error", (errorMessage) => {
  * function to render rooms
  */
 socket.on("roomList", (rooms) => {
-  //Skapa gränssnitt med att kunna skapa rum
-  //Skapa gränssnitt med rum, lista, med onClick event på rum som skickar med join på det rummet
-  console.log(rooms);
-
-  
   let roomContainer = document.getElementById('room-container')
+  if(roomContainer) {
+    roomContainer.innerHTML = '';
+  }
+
   roomContainer?.classList.add('roomContainer')
     const roomName = document.createElement('p')
-    //roomName.onclick()
     roomName.classList.add('room-name')
   for (let room of rooms) {
     roomName.innerText = room;
-    roomContainer?.append(roomName);
+    roomContainer?.append(roomName)
+     roomName.addEventListener('click', () => {
+      socket.emit("join", room);
+      console.log(room);
+    })
   }
 });
 
+// 2. kolla så att joinedroom byts //JA
+// 3. kontrollera att rummen blir rätt (på servern), kmr till 'join', getRooms //JA
+// 4. töm chat vid rumbyte
+// 5. lägga till rubrik på rum
+
 socket.on("joined", (room) => {
+  let messageList = document.getElementById('messages');
+  if(messageList) {
+    messageList.innerHTML = '';
+  }
+
   joinedRoom = room;
-  renderForm();
+  renderForm(); //add room in param 
 });
 
 

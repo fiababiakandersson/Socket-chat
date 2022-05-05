@@ -12,6 +12,11 @@
     margin-left: 1.5rem;
 }
 
+.room-name:hover {
+    background-color: #9787a2;
+    cursor: pointer;
+}
+
 .roomContainer {
     padding: .4rem;
     display: flex;
