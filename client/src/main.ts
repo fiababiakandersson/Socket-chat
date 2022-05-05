@@ -1,6 +1,7 @@
 import "./style.css";
 import './style/nameForm.css';
 import './style/roomMenu.css';
+import "./style/roomList.css";
 import { io, Socket } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "../../types";
 
@@ -13,10 +14,11 @@ let joinedRoom : string;
 //hämtar element för att kunna dölja
 const roomContainer = document.getElementById('room-container') as HTMLElement
 const addRoom = document.getElementById('add-room') as HTMLElement
+const roomMenu = document.getElementById("room-menu") as HTMLElement;
 
 window.addEventListener("load", () => {
   renderNameInput();
-  //renderRoomInput();
+  renderRoomInput();
 })
 
 
@@ -30,12 +32,14 @@ function renderNameInput() {
   let contentDiv = document.getElementById('content-div')
   
   let container = document.createElement("div");
+  container.id = 'Rcontainer';
   container.classList.add("inputNameContainer");
 
   let nameInputHeader = document.createElement("h3");
   nameInputHeader.innerText = "Your name here: ";
 
   let nameInput = document.createElement("input");
+  nameInput.autocomplete = "off";
   nameInput.id = 'nameInput';
 
   
@@ -65,14 +69,20 @@ function renderRoomInput() {
   addRoomIcon?.addEventListener("click", () => {
 
   let container = document.createElement("div");
+  container.classList.add('addRoomContainer');
   //container.classList.add("inputRoomContainer");
 
   let roomInputHeader = document.createElement("h3");
-  roomInputHeader.innerText = "Create room: ";
+  //roomInputHeader.innerText = "Create room: ";
 
   let roomInput = document.createElement("input");
+  roomInput.maxLength = 20;
+  roomInput.autocomplete = "off";
+  roomInput.classList.add('roomInput')
+  roomInput.placeholder = 'Room name';
 
   let roomInputBtn = document.createElement("button");
+  roomInputBtn.classList.add('roomInputBtn');
   roomInputBtn.innerText = "Join";
   roomInputBtn.addEventListener("click", () => {
     const room = roomInput.value;
@@ -83,8 +93,10 @@ function renderRoomInput() {
     socket.emit("join", room);
   });
 
-  container.append(roomInputHeader, roomInput, roomInputBtn);
+  
+  container.append(roomInputHeader, roomInput, roomInputBtn, addRoomIcon);
   addRoom.append(container)
+  roomMenu.append(addRoom)
 
   })
   
@@ -95,7 +107,8 @@ function renderRoomInput() {
  * function to render message input
  */
 function renderForm() {
-   //document.body.innerHTML = "";
+   //document.body.innerHTML = ""
+
   const contentDiv = document.getElementById('content-div')
    let chatList = document.createElement('ul');
    chatList.id = "messages";
@@ -120,6 +133,7 @@ function renderForm() {
 
    chatForm.append(chatInput, sendBtn);
    contentDiv?.append(chatList, chatForm);
+   
 };
 
 
@@ -142,8 +156,10 @@ socket.on("roomList", (rooms) => {
   //Skapa gränssnitt med rum, lista, med onClick event på rum som skickar med join på det rummet
   console.log(rooms);
   let roomContainer = document.getElementById('room-container')
+  roomContainer?.classList.add('roomContainer')
   for (let room of rooms) {
     const roomName = document.createElement('p')
+    //roomName.onclick()
     roomName.classList.add('room-name')
     roomName.innerText = room;
     roomContainer?.append(roomName)
@@ -170,9 +186,7 @@ socket.on('message', (message, from) => {
   if(messageList) {
     messageList.append(chatItem);
   }
-
   window.scrollTo(0, document.body.scrollHeight);
-  
 });
 
 

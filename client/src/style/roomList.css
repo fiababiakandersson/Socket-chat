@@ -1,0 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Mulish:wght@300;400&display=swap');
+
+.room-name {
+    background-color: #9d8fa7;
+    color: white;
+    font-family: Mulish, Arial;
+    padding: 1rem;
+    border-radius: 15px;
+    max-width: 20rem;
+    text-align: center;
+    margin-left: 1.5rem;
+}
+
+.roomContainer {
+    padding: .4rem;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    min-width: 25rem;
+}
