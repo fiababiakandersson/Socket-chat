@@ -128,7 +128,7 @@ function renderRoomInput() {
  * function to render message input
  */
 let chatInput = document.createElement("input"); //tillsvidare utanför
-function renderForm(room: string) {
+function renderForm() {
   //document.body.innerHTML = "";
   let contentDiv = document.getElementById("content-div");
   let chatList = document.createElement("ul");
@@ -136,9 +136,6 @@ function renderForm(room: string) {
   chatInput.autocomplete = "off";
   chatInput.id = "input";
 
-
-  
-  
 
   // username prints out when someone's typing
   const isTyping = document.createElement("p");
@@ -247,7 +244,7 @@ socket.on("roomList", (rooms) => {
 });
 
 //
-socket.on("joined", (rooms, room) => {
+socket.on("joined", (room) => {
   let messageList = document.getElementById("messages");
   if (messageList) {
     messageList.innerHTML = "";
@@ -260,11 +257,9 @@ socket.on("joined", (rooms, room) => {
      const element = document.getElementById("content-div");
      element?.append(roomHeader);
   }*/
-  
-
 
   joinedRoom = room;
-  renderForm(room);
+  renderForm();
 });
 
 
