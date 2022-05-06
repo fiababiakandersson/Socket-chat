@@ -51,7 +51,6 @@ function renderNameInput() {
 
     //checks if name input empty, if true you can not submit name
     if ( nameInput.value === '' ) {
-      
       return;
     }
 
@@ -61,7 +60,6 @@ function renderNameInput() {
   });
 
   contentDiv?.append(container);
-  //nameInput.append(badge);
   container.append(nameInputHeader, nameInput, nameInputBtn);
 }
 
@@ -77,9 +75,6 @@ function usernameInMenu() {
   welcomeText.innerText = `${joinedUsername}`;
 
   nameContainer?.append(welcomeText)
-
- // console.log("look at me: ", joinedUsername)  // added 
-
 }
 
 /**
@@ -95,10 +90,8 @@ function renderRoomInput() {
     
   let container = document.createElement("div");
   container.classList.add('addRoomContainer');
-  //container.classList.add("inputRoomContainer");
 
   let roomInputHeader = document.createElement("h3");
-  //roomInputHeader.innerText = "Create room: ";
 
   let roomInput = document.createElement("input");
   roomInput.maxLength = 20;
@@ -129,12 +122,12 @@ function renderRoomInput() {
  */
 let chatInput = document.createElement("input"); //tillsvidare utanför
 function renderForm() {
-  //document.body.innerHTML = "";
   let contentDiv = document.getElementById("content-div");
   let chatList = document.createElement("ul");
   chatList.id = "messages";
   chatInput.autocomplete = "off";
   chatInput.id = "input";
+  chatInput.maxLength = 270;
 
 
   // username prints out when someone's typing
@@ -143,7 +136,6 @@ function renderForm() {
   chatInput.addEventListener("keydown", function (event) {
     if (event.key !== "Enter") {
       socket.emit("typing");
-      console.log("skriver");
     }
     
     chatInput.addEventListener("keyup", function () {
@@ -151,7 +143,6 @@ function renderForm() {
          const waitTime = 3000;
         timer = setTimeout (() => {
          socket.emit("nottyping");
-         console.log("skriver inte");
    }, waitTime)
      }); 
     
@@ -159,13 +150,11 @@ function renderForm() {
 
   socket.on("typing", (username) => {
     isTyping.style.display = "initial";
-    isTyping.innerText = username + " is typing..";
+    isTyping.innerText = username + " is typing...";
     contentDiv?.append(isTyping);
   });
 
-   socket.on("nottyping", (username) => {
-      console.log('key släppt')
-      console.log(username, 'slutat skriva')
+   socket.on("nottyping", () => {
       isTyping.style.display = "none"
 })
 
@@ -227,18 +216,13 @@ socket.on("roomList", (rooms) => {
       if (roomName.innerText === roomHeader!.innerText) { 
         const element = document.getElementById("content-div");
         element?.append(roomHeader!);
-        console.log('true');
       } else if (roomName.innerText != roomHeader!.innerText ) {
-        console.log('false');
-        
         let roomHeader = document.createElement("h3");
         roomHeader.innerText = room;
         const element = document.getElementById("content-div");
         element?.append(roomHeader);
       }
-
       socket.emit("join", room);
-      console.log(room);
     })
   }
 });
@@ -268,12 +252,14 @@ socket.on('message', (message, from) => {
 
   console.log(message, from.username);
   const chatItem = document.createElement("li");
-  chatItem.textContent = from.username + ": " + message;
+  chatItem.textContent = from.username + ":  " + message;
   const messageList = document.getElementById("messages");
+  const container = document.querySelector('inputNameContainer');
   if (messageList) {
     messageList.append(chatItem);
+    container?.append(messageList);
   }
-  window.scrollTo(0, document.body.scrollHeight);
+  window.scrollTo(1, document.body.scrollHeight);
 });
 
 

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap');
 
 body {
       margin: 0;
@@ -5,27 +6,29 @@ body {
       letter-spacing: .5px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-
+    
     #form {
-      background: rgba(0, 0, 0, 0.15); 
-      padding: 0.25rem;
-      position: absolute; 
+      position: absolute;
+      background: #F5F5F5;
       bottom: 0;
       left: 0;
       right: 0; 
+      padding-bottom: .5rem;
+      padding-top: .5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
       display: flex;
       height: 3rem;
-      width: 100%;
-      box-sizing: border-box;
-      backdrop-filter: blur(10px);
+      width: auto;
     }
 
     #input {
       border: none;
-      padding: 0 1rem;
+      padding: 1rem 1rem;
       flex-grow: 1;
       border-radius: 2rem;
-      margin: 0.25rem;
+      margin: 0.2rem;
+      background-color: rgb(224, 224, 224);
     }
 
     #input:focus {
@@ -40,44 +43,64 @@ body {
       border-radius: 10px;
       outline: none;
       color: #fff;
+      margin-left: 2rem;
+    }
+
+    #form>button:hover {
+      background-color: #e2a1ae;
+      cursor: pointer;
     }
 
     #messages {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2.5rem;
+      left: 0;
       list-style-type: none;
       margin: 0;
       padding: 0;
-      position: absolute;
+      color: white;
       left: 0;
       top: 1rem;
     }
 
     #messages>li {
-      padding: 0.5rem 1rem;
-     /*  position: absolute;
-      left: 0 */
+      width: auto;
+
+      word-wrap: break-word;
+      text-align: right;
+      padding: .9rem 3rem;
+      border-radius: 12px 12px 0 12px;
+      background-color: #ED9F9C;
     }
+
 
     #messages>li:nth-child(odd) {
-      background: #F0D4D6;
-      /* position: absolute;
-      left: 0 */
+      text-align: left;
+      border-radius: 12px 12px 12px 0;
+      background: #E8E7ED;
+      color: black;
     }
 
-    .is-typing{
+    .is-typing {
+      font-family: Raleway, Arial;
+      font-weight: 200;
+      font-style: italic;
       position: absolute;
       left: 1rem;
       bottom: 3rem;
-      color: #FC5EBD;
+      color: #808080;
     }
 
-    #container{
+    #container {
       display: flex;
       width: 100%;
       height: 100%;
       background-color: #F5F5F5;
     }
 
-    #room-menu{
+    #room-menu {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -85,11 +108,21 @@ body {
       height: 100vh;
     }
 
-    #content-div{
+    #content-div {
+      height: auto;
+      overflow-y: scroll;
+      margin-bottom: .1rem;
+      position: relative;
       display: flex;
+      row-gap: .7rem;
       flex-direction: column-reverse;
       justify-content: center;
       align-items: center;
       width: 60%;
-      position: relative;
+      padding: 2rem;
+      padding-top: 0;
     }
+
+::-webkit-scrollbar {
+  width: 20px;
+} 
