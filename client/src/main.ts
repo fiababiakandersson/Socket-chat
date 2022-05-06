@@ -127,6 +127,7 @@ function renderForm() {
   chatList.id = "messages";
   chatInput.autocomplete = "off";
   chatInput.id = "input";
+  chatInput.maxLength = 270;
 
 
   // username prints out when someone's typing
@@ -149,11 +150,11 @@ function renderForm() {
 
   socket.on("typing", (username) => {
     isTyping.style.display = "initial";
-    isTyping.innerText = username + " is typing..";
+    isTyping.innerText = username + " is typing...";
     contentDiv?.append(isTyping);
   });
 
-   socket.on("nottyping", (username) => {
+   socket.on("nottyping", () => {
       isTyping.style.display = "none"
 })
 
@@ -251,12 +252,14 @@ socket.on('message', (message, from) => {
 
   console.log(message, from.username);
   const chatItem = document.createElement("li");
-  chatItem.textContent = from.username + ": " + message;
+  chatItem.textContent = from.username + ":  " + message;
   const messageList = document.getElementById("messages");
+  const container = document.querySelector('inputNameContainer');
   if (messageList) {
     messageList.append(chatItem);
+    container?.append(messageList);
   }
-  window.scrollTo(0, document.body.scrollHeight);
+  window.scrollTo(1, document.body.scrollHeight);
 });
 
 
