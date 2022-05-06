@@ -2,7 +2,7 @@ export interface ServerToClientEvents {
   message: ( message: string, from: {id: string, username: string}) => void;
   connected: (username: string) => void;
   roomList: (rooms: string[]) => void;
-  joined: (room: string) => void;
+  joined: (rooms: string[], room: string) => void;
   _error: (errorMessage: string) => void;
   typing: (username: string, from: {username: string}) => void;
   nottyping: (username: string, from: {username: string}) => void;
