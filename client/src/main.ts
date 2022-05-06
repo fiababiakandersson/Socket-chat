@@ -51,7 +51,6 @@ function renderNameInput() {
 
     //checks if name input empty, if true you can not submit name
     if ( nameInput.value === '' ) {
-      
       return;
     }
 
@@ -61,7 +60,6 @@ function renderNameInput() {
   });
 
   contentDiv?.append(container);
-  //nameInput.append(badge);
   container.append(nameInputHeader, nameInput, nameInputBtn);
 }
 
@@ -77,9 +75,6 @@ function usernameInMenu() {
   welcomeText.innerText = `${joinedUsername}`;
 
   nameContainer?.append(welcomeText)
-
- // console.log("look at me: ", joinedUsername)  // added 
-
 }
 
 /**
@@ -95,10 +90,8 @@ function renderRoomInput() {
     
   let container = document.createElement("div");
   container.classList.add('addRoomContainer');
-  //container.classList.add("inputRoomContainer");
 
   let roomInputHeader = document.createElement("h3");
-  //roomInputHeader.innerText = "Create room: ";
 
   let roomInput = document.createElement("input");
   roomInput.maxLength = 20;
@@ -129,7 +122,6 @@ function renderRoomInput() {
  */
 let chatInput = document.createElement("input"); //tillsvidare utanför
 function renderForm() {
-  //document.body.innerHTML = "";
   let contentDiv = document.getElementById("content-div");
   let chatList = document.createElement("ul");
   chatList.id = "messages";
@@ -143,7 +135,6 @@ function renderForm() {
   chatInput.addEventListener("keydown", function (event) {
     if (event.key !== "Enter") {
       socket.emit("typing");
-      console.log("skriver");
     }
     
     chatInput.addEventListener("keyup", function () {
@@ -151,7 +142,6 @@ function renderForm() {
          const waitTime = 3000;
         timer = setTimeout (() => {
          socket.emit("nottyping");
-         console.log("skriver inte");
    }, waitTime)
      }); 
     
@@ -164,8 +154,6 @@ function renderForm() {
   });
 
    socket.on("nottyping", (username) => {
-      console.log('key släppt')
-      console.log(username, 'slutat skriva')
       isTyping.style.display = "none"
 })
 
@@ -227,18 +215,13 @@ socket.on("roomList", (rooms) => {
       if (roomName.innerText === roomHeader!.innerText) { 
         const element = document.getElementById("content-div");
         element?.append(roomHeader!);
-        console.log('true');
       } else if (roomName.innerText != roomHeader!.innerText ) {
-        console.log('false');
-        
         let roomHeader = document.createElement("h3");
         roomHeader.innerText = room;
         const element = document.getElementById("content-div");
         element?.append(roomHeader);
       }
-
       socket.emit("join", room);
-      console.log(room);
     })
   }
 });
