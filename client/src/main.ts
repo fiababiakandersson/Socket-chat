@@ -139,24 +139,26 @@ function renderForm() {
 
   // username prints out when someone's typing
   const isTyping = document.createElement("p");
+  isTyping.classList.add('is-typing')
   chatInput.addEventListener("keydown", function (event) {
     if (event.key !== "Enter") {
       socket.emit("typing");
       console.log("skriver");
     }
-  });
-
-  
-  chatInput.addEventListener("keyup", function () {
-     let timer;
-      const waitTime = 3000;
-     timer = setTimeout (() => {
-      socket.emit("nottyping");
-      console.log("skriver inte");
-}, waitTime)
+    
+    chatInput.addEventListener("keyup", function () {
+        let timer;
+         const waitTime = 3000;
+        timer = setTimeout (() => {
+         socket.emit("nottyping");
+         console.log("skriver inte");
+   }, waitTime)
+     }); 
+    
   });
 
   socket.on("typing", (username) => {
+    isTyping.style.display = "initial";
     isTyping.innerText = username + " is typing..";
     contentDiv?.append(isTyping);
   });

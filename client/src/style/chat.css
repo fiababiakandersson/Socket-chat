@@ -33,7 +33,7 @@ body {
     }
 
     #form>button {
-      background: #FC5EBD;
+      background: #EEA4B3;
       border: none;
       padding: 0 1rem;
       margin: 0.25rem;
@@ -61,6 +61,13 @@ body {
       background: #F0D4D6;
       /* position: absolute;
       left: 0 */
+    }
+
+    .is-typing{
+      position: absolute;
+      left: 1rem;
+      bottom: 3rem;
+      color: #FC5EBD;
     }
 
     #container{
