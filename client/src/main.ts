@@ -124,17 +124,20 @@ function renderRoomInput() {
   })
 }; 
      
-     /**
+/**
  * function to render message input
  */
 let chatInput = document.createElement("input"); //tillsvidare utanför
-function renderForm() {
+function renderForm(room: string) {
   //document.body.innerHTML = "";
   let contentDiv = document.getElementById("content-div");
   let chatList = document.createElement("ul");
   chatList.id = "messages";
   chatInput.autocomplete = "off";
   chatInput.id = "input";
+
+
+  
   
 
   // username prints out when someone's typing
@@ -181,13 +184,14 @@ function renderForm() {
     console.log(chatInput.value)
   });
 
-
+  //
   let sendBtn = document.createElement("button");
   sendBtn.innerText = "Send";
   chatForm.append(chatInput, sendBtn);
-  contentDiv?.append(chatList, chatForm);
+  contentDiv?.append( chatList, chatForm);
   
 }
+
 
 socket.on("connect_error", (err) => {
   if (err.message == "Invalid username") {
@@ -195,9 +199,11 @@ socket.on("connect_error", (err) => {
   }
 });
 
+
 socket.on("_error", (errorMessage) => {
   console.log(errorMessage);
 });
+
 
 /**
  * function to render rooms
@@ -215,25 +221,50 @@ socket.on("roomList", (rooms) => {
     roomName.innerText = room;
     roomContainer?.append(roomName)
      roomName.addEventListener('click', () => {
+
+    
+      //Show right room name in room title
+      let roomHeader = document.getElementById('roomHeader')
+      roomHeader!.innerHTML = room;
+
+      if (roomName.innerText === roomHeader!.innerText) { 
+        const element = document.getElementById("content-div");
+        element?.append(roomHeader!);
+        console.log('true');
+      } else if (roomName.innerText != roomHeader!.innerText ) {
+        console.log('false');
+        
+        let roomHeader = document.createElement("h3");
+        roomHeader.innerText = room;
+        const element = document.getElementById("content-div");
+        element?.append(roomHeader);
+      }
+
       socket.emit("join", room);
       console.log(room);
     })
   }
 });
 
-// 2. kolla så att joinedroom byts //JA
-// 3. kontrollera att rummen blir rätt (på servern), kmr till 'join', getRooms //JA
-// 4. töm chat vid rumbyte
-// 5. lägga till rubrik på rum
-
-socket.on("joined", (room) => {
-  let messageList = document.getElementById('messages');
-  if(messageList) {
-    messageList.innerHTML = '';
+//
+socket.on("joined", (rooms, room) => {
+  let messageList = document.getElementById("messages");
+  if (messageList) {
+    messageList.innerHTML = "";
   }
 
+  //print out room name
+  /*for (let room of rooms) {
+     let roomHeader = document.createElement("h3");
+     roomHeader.innerText = room;
+     const element = document.getElementById("content-div");
+     element?.append(roomHeader);
+  }*/
+  
+
+
   joinedRoom = room;
-  renderForm(); //add room in param 
+  renderForm(room);
 });
 
 
@@ -249,6 +280,7 @@ socket.on('message', (message, from) => {
   }
   window.scrollTo(0, document.body.scrollHeight);
 });
+
 
 socket.on("connected", (username) => {
   console.log(username);

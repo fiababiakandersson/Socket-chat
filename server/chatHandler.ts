@@ -9,7 +9,7 @@ export default (io: Server, socket: Socket) => {
       // socket.leave function som berättar om användaren har lämnat ett rum eller inte.
       
       socket.join(room);
-      if (true) { // (true)
+      if (true) {
         io.emit("roomList", getRooms(io));
       }
       console.log(io.sockets.adapter.rooms)
