@@ -4,17 +4,30 @@ import { getRooms } from './roomStore';
 export default (io: Server, socket: Socket) => {
 
     socket.on("join", (room) => {
-      const shouldBroadcastRooms: boolean = !getRooms(io).includes(room);
+     const shouldBroadcastRooms: boolean = !getRooms(io).includes(room);
       
       // socket.leave function som berättar om användaren har lämnat ett rum eller inte.
       
       socket.join(room);
-      if (true) {
+       if (true) {
         io.emit("roomList", getRooms(io));
       }
       console.log(io.sockets.adapter.rooms)
       socket.emit("joined", room);
+      console.log('har joinat', room)
     });
+
+
+
+     socket.on("leave", (room) => {
+       console.log('lämnat', room)
+       socket.leave(room);
+       socket.emit('userLeft', room)
+      // if ( sats som kollar om det är en person kvar ) {
+      io.emit("roomList", getRooms(io))
+      // }
+    }) 
+
 
     socket.on("message", (message, to) => {
       console.log(message, to);
@@ -29,6 +42,8 @@ export default (io: Server, socket: Socket) => {
       }); //socket.id för privat chat
     });
 
+
+    /* if socket is typing or not */
     socket.on('typing', () =>{
     socket.broadcast.emit('typing', socket.data.username);
    })
@@ -36,4 +51,23 @@ export default (io: Server, socket: Socket) => {
    socket.on('nottyping', () =>{
     socket.broadcast.emit('nottyping', socket.data.username);
    }) 
+
+   //socket.on('addRoom', (room) => {
+     //console.log(room)
+    // const shouldBroadcastRooms: boolean = !getRooms(io).includes(room);
+     //io.emit("roomList", getRooms(io))
+    //  if (true) {
+    //    io.emit("roomList", room, getAddedRooms(io)); //ska göras innan joinar
+     // } 
+  // })
+
+
+   //hm oklar
+  /*  socket.on("disconnecting", () => {
+    for (const room of socket.rooms) {
+      if (room !== socket.id) {
+        socket.to(room).emit("user has left", socket.id);
+      }
+    }
+  }); */
 }
