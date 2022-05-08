@@ -1,4 +1,3 @@
-import "./style/style.css";
 import './style/nameForm.css';
 import './style/roomMenu.css';
 import "./style/roomList.css";
