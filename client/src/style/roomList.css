@@ -17,10 +17,10 @@
     cursor: pointer;
 }
 
-.roomContainer {
+ .roomContainer {
     padding: .4rem;
     display: flex;
     align-self: center;
     align-items: center;
     min-width: 90%;
-}
+} 
