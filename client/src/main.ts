@@ -43,7 +43,9 @@ function renderNameInput() {
   nameInputBtn.innerText = "Start Messaging";
   nameInputBtn.addEventListener("click", () => {
     //checks if name input empty, if true you can not submit name
+
     if ( nameInput.value === '' ) { 
+
       return;
     }
     container.innerHTML = ""
@@ -51,7 +53,6 @@ function renderNameInput() {
     socket.connect();  
   });
   contentDiv?.append(container);
-  //nameInput.append(badge);
   container.append(nameInputHeader, nameInput, nameInputBtn);
 }
 
@@ -66,7 +67,7 @@ function usernameInMenu() {
   const welcomeText = document.createElement("h2")
   welcomeText.innerText = `${joinedUsername}`;
   nameContainer?.append(welcomeText)
- // console.log("look at me: ", joinedUsername)  // added 
+
 }
 
 
@@ -81,7 +82,9 @@ function renderRoomInput() {
   addRoomIcon?.addEventListener("click", () => {
   let container = document.createElement("div");
   container.classList.add('addRoomContainer');
+
   let roomInputHeader = document.createElement("h3");
+
   let roomInput = document.createElement("input");
   roomInput.maxLength = 20;
   roomInput.autocomplete = "off";
@@ -148,12 +151,15 @@ function renderAddedRoomInfo (room: string) {
  * function to render message input
  */
 let chatInput = document.createElement("input"); //tillsvidare utanför
+
 function renderForm(room: string) {
   let contentDiv = document.getElementById("content-div") as HTMLElement;
+
   let chatList = document.createElement("ul");
   chatList.id = "messages";
   chatInput.autocomplete = "off";
   chatInput.id = "input";
+  chatInput.maxLength = 270;
 
   // username prints out when someone's typing
   const isTyping = document.createElement("p");
@@ -161,7 +167,6 @@ function renderForm(room: string) {
   chatInput.addEventListener("keydown", function (event) {
     if (event.key !== "Enter") {
       socket.emit("typing");
-      console.log("skriver");
     }
     
     chatInput.addEventListener("keyup", function () {
@@ -169,7 +174,6 @@ function renderForm(room: string) {
          const waitTime = 3000;
         timer = setTimeout (() => {
          socket.emit("nottyping");
-         console.log("skriver inte");
    }, waitTime)
      }); 
     
@@ -177,13 +181,11 @@ function renderForm(room: string) {
 
   socket.on("typing", (username) => {
     isTyping.style.display = "initial";
-    isTyping.innerText = username + " is typing..";
+    isTyping.innerText = username + " is typing...";
     contentDiv?.append(isTyping);
   });
 
-   socket.on("nottyping", (username) => {
-      console.log('key släppt')
-      console.log(username, 'slutat skriva')
+   socket.on("nottyping", () => {
       isTyping.style.display = "none"
 })
 
@@ -254,13 +256,14 @@ function renderRoomInfo (room: string, roomName: HTMLElement) {
       const element = document.getElementById("content-div");
         if (roomName.innerText === roomHeader!.innerText) { 
         element?.append(roomHeader!);
-        console.log('true');
       } else if (roomName.innerText != roomHeader!.innerText ) {
-        console.log('false');
+
         
         let roomHeader = document.createElement("h3") as HTMLElement;
+
         roomHeader.innerText = room;
       }
+
 
        socket.emit("join", room);
       console.log(room); 
@@ -296,13 +299,16 @@ function leaveRoom() {
 
 socket.on("joined", (room) => {
  
+
   let messageList = document.getElementById("messages");
   if (messageList) {
     messageList.innerHTML = "";
   }
+
   joinedRoom = room;
   console.log(room)
   //renderForm(room);
+
 });
 
 //////////////////////////////////////////////
@@ -313,12 +319,14 @@ socket.on('message', (message, from) => {
   console.log(message, from.username);
   console.log(from.username)
   const chatItem = document.createElement("li");
-  chatItem.textContent = from.username + ": " + message;
+  chatItem.textContent = from.username + ":  " + message;
   const messageList = document.getElementById("messages");
+  const container = document.querySelector('inputNameContainer');
   if (messageList) {
     messageList.append(chatItem);
+    container?.append(messageList);
   }
-  window.scrollTo(0, document.body.scrollHeight);
+  window.scrollTo(1, document.body.scrollHeight);
 });
 
 ///////////////////////////////////////////////
