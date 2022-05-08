@@ -6,6 +6,8 @@ export interface ServerToClientEvents {
   _error: (errorMessage: string) => void;
   typing: (username: string, from: {username: string}) => void;
   nottyping: (username: string, from: {username: string}) => void;
+  leave: (rooms: string[], room: string) => void;
+  userLeft: (room: string) => void;
 }
 
 export interface ClientToServerEvents {
@@ -13,6 +15,7 @@ export interface ClientToServerEvents {
   join: (room: string) => void;
   typing: () => void;
   nottyping: () => void;
+  leave: (room: string) => void;
 }
 
 export interface InterServerEvents {

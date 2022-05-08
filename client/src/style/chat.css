@@ -60,9 +60,13 @@ body {
       list-style-type: none;
       margin: 0;
       padding: 0;
+      position: absolute;
+      left: 1rem;
+      top: 6rem;
+      height: 70%;
+     overflow: hidden; 
+      overflow-y: scroll;
       color: white;
-      left: 0;
-      top: 1rem;
     }
 
     #messages>li {
@@ -100,6 +104,7 @@ body {
       background-color: #F5F5F5;
     }
 
+
     #room-menu {
       display: flex;
       flex-direction: column;
@@ -107,6 +112,7 @@ body {
       width: 40%;
       height: 100vh;
     }
+
 
     #content-div {
       height: auto;
@@ -121,8 +127,31 @@ body {
       width: 60%;
       padding: 2rem;
       padding-top: 0;
+      position: relative;
     }
+
+    #roomHeader {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 80%;
+      align-items: center;
+      justify-content: space-between;   
+    } 
+
+    .leave-btn {
+      font-size: 1rem;
+    } 
+
+    .room-info {
+      width: 50%;
+    }
+
+    .room-info h3 {
+      text-align: center;
+    }
+
 
 ::-webkit-scrollbar {
   width: 20px;
 } 
+

@@ -7,7 +7,12 @@ export function getRooms(io: Server) {
     for (let [id, socket] of io.sockets.adapter.rooms) {
         if(!socket.has(id)) {
             rooms.push(id);
-        };
+        }
+        
+        
+       /*  if(!socket.leave(id)) {
+            rooms.splice(socket)
+        }  */ 
     };
     return rooms;
 };

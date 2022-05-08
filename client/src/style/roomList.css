@@ -7,9 +7,9 @@
     font-family: Mulish, Arial;
     padding: 1rem;
     border-radius: 15px;
-    max-width: 20rem;
+    max-width: 90%;
     text-align: center;
-    margin-left: 1.5rem;
+    
 }
 
 .room-name:hover {
@@ -22,5 +22,5 @@
     display: flex;
     align-self: center;
     align-items: center;
-    min-width: 25rem;
+    min-width: 90%;
 }
