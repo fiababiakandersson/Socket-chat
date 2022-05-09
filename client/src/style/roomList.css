@@ -31,6 +31,10 @@
     min-width: 16rem;
     }
 
+    .room-name {
+        margin-left: 0;
+    }
+
 }
 
 @media (max-width: 760px) {
@@ -39,4 +43,23 @@
      min-width: 12rem;
      }
  
+ }
+
+ @media (max-width: 520px) {
+
+    .roomContainer {
+        margin-left: 2rem;
+    }
+    .room-name {
+       padding: .5;
+       margin: 0;
+       width: 100px;
+    }
+
+    p {
+        font-size: 13px;
+        margin: 0;
+        padding: 0;
+    }
+
  }
