@@ -24,3 +24,19 @@
     align-items: center;
     min-width: 25rem;
 }
+
+@media (max-width: 905px) {
+
+   .roomContainer {
+    min-width: 16rem;
+    }
+
+}
+
+@media (max-width: 760px) {
+
+    .roomContainer {
+     min-width: 12rem;
+     }
+ 
+ }

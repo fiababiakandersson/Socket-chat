@@ -271,6 +271,7 @@ socket.on("connected", (username) => {
   renderRoomInput();
 });
 
+
 /*
 const messages = document.getElementById("messages");
 const form = document.getElementById("form");

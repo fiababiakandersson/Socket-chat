@@ -126,3 +126,19 @@ body {
 ::-webkit-scrollbar {
   width: 20px;
 } 
+
+@media (max-width: 845px) {
+
+  #form>button {
+    margin-left: .5rem;
+  }
+}
+
+@media (max-width: 510px) {
+
+  #form>button {
+    padding: 0;
+    justify-content: center;
+    width: 50px;
+  }
+}
