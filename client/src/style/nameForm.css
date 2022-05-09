@@ -72,3 +72,17 @@ h3 {
         min-width: 145px;
     }
 }
+
+@media (max-width: 320px) {
+
+    #nameInput {
+        min-width: 100px;
+      
+    }
+
+    .nameBtn {
+        width:auto;
+        padding: .5rem;
+    }
+
+}

@@ -48,7 +48,7 @@
  @media (max-width: 520px) {
 
     .roomContainer {
-        margin-left: 2rem;
+        margin-left: 4rem;
     }
     .room-name {
        padding: .5;
@@ -61,5 +61,17 @@
         margin: 0;
         padding: 0;
     }
+
+ }
+
+ @media (max-width: 350px) {
+
+    .room-name {
+        width: 80px;
+        height: 20px;
+        overflow-y: hidden;
+    }
+
+    
 
  }

@@ -96,18 +96,41 @@ h2 {
     }
 
     .roomInput {
-        margin: 0;
+        margin-bottom: 1rem;
     }
 
+}
+
+
+
+@media (max-width: 520px) {
+
+    .roomInput {
+        width: 100px;
+        margin-bottom: .5rem;
+        margin-left: 0;
+    }
+
+    .roomInputBtn {
+        margin-left: 1rem;
+    }
+    
 }
 
 @media (max-width: 420px) {
 
-    .logo {
-        max-width: 8rem;
-    }
-
-
+.logo {
+    max-width: 8rem;
+}
 
 }
 
+@media (max-width: 345px) {
+
+
+
+#add-room-icon {
+    margin-bottom: 0;
+}
+
+}
