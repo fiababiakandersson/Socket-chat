@@ -156,7 +156,7 @@ function renderForm(room: string) {
     console.log('klickat')
     event.preventDefault();
     if (chatInput.value.length) {
-      socket.emit("message", chatInput.value, joinedRoom);
+    //  socket.emit("message", chatInput.value, joinedRoom);
     } else {
       console.log("Not allowed to send empty messages!");
     }
@@ -248,7 +248,9 @@ socket.on("joined", (room) => {
   if (messageList) {
     messageList.innerHTML = "";
   }
+
   joinedRoom = room;
+
   console.log(room)
   renderForm(room);
 });
