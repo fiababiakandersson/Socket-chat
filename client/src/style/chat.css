@@ -71,7 +71,6 @@ body {
 
     #messages>li {
       width: auto;
-
       word-wrap: break-word;
       text-align: right;
       padding: .9rem 3rem;
@@ -145,3 +144,42 @@ body {
   width: 20px;
 } 
 
+@media (max-width: 845px) {
+
+  #form>button {
+    margin-left: .5rem;
+  }
+}
+
+@media (max-width: 520px) {
+
+  #form>button {
+    padding: 3px;
+    justify-content: center;
+    width: 50px;
+  }
+
+  #input {
+    width: 100px;
+  }
+
+  #messages li {
+    font-size: 12px;
+    padding: 1rem;
+  }
+
+  #content-div {
+    padding: 1rem;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  #form {
+    flex-direction: column;
+    height: 80px;
+  }
+
+
+}

@@ -193,7 +193,7 @@ function renderForm(room: string) {
   chatForm.addEventListener("submit", (event) => {
     event.preventDefault();
     if (chatInput.value.length) {
-      socket.emit("message", chatInput.value, joinedRoom);
+      //socket.emit("message", chatInput.value, //joinedRoom);
     } else {
       console.log("Not allowed to send empty messages!");
     }
@@ -304,7 +304,7 @@ socket.on("joined", (room) => {
     messageList.innerHTML = "";
   }
 
-  joinedRoom = room;
+  //joinedRoom = room;
   console.log(room)
   renderForm(room);
 

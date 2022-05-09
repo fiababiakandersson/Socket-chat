@@ -73,6 +73,8 @@
    align-items: center;
    color: #f5aebc;
    bottom: 0;
+   margin-bottom: .5rem;
+   left: 1rem; 
 }
 
 #add-room-icon:hover {
@@ -92,4 +94,55 @@ h2 {
 #add-room div {
     display: flex;
     justify-content: center;
+}
+@media (max-width: 800px) {
+
+    .addRoomContainer {
+        flex-direction: column;
+        row-gap: 2;
+    }
+
+    #add-room {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .roomInput {
+        margin-bottom: 1rem;
+    }
+
+}
+
+
+
+@media (max-width: 520px) {
+
+    .roomInput {
+        width: 100px;
+        margin-bottom: .5rem;
+        margin-left: 0;
+    }
+
+    .roomInputBtn {
+        margin-left: 1rem;
+    }
+    
+}
+
+@media (max-width: 420px) {
+
+.logo {
+    max-width: 8rem;
+}
+
+}
+
+@media (max-width: 345px) {
+
+
+
+#add-room-icon {
+    margin-bottom: 0;
+}
+
 }
