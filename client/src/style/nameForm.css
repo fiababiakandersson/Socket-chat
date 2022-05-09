@@ -2,16 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Mulish:wght@300;400&display=swap');
 
  
+#content-div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 60%;
+}
 
-.inputNameContainer {
+#name-container{
+    height: 100%;
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 2rem;
-    /* height: 100vh; */
 }
+
 
 .nameBtn {
     letter-spacing: 1px;

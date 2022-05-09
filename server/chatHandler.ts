@@ -6,8 +6,13 @@ export default (io: Server, socket: Socket) => {
     socket.on("join", (room) => {
      const shouldBroadcastRooms: boolean = !getRooms(io).includes(room);
       
-      // socket.leave function som berättar om användaren har lämnat ett rum eller inte.
-      
+     // leave room while entering a new one
+      socket.rooms.forEach((room) => {
+        if (socket.id !== room) {
+          socket.leave(room);
+        }
+      });
+
       socket.join(room);
        if (true) {
         io.emit("roomList", getRooms(io));
@@ -23,9 +28,7 @@ export default (io: Server, socket: Socket) => {
        console.log('lämnat', room)
        socket.leave(room);
        socket.emit('userLeft', room)
-      // if ( sats som kollar om det är en person kvar ) {
       io.emit("roomList", getRooms(io))
-      // }
     }) 
 
 
@@ -51,6 +54,11 @@ export default (io: Server, socket: Socket) => {
    socket.on('nottyping', () =>{
     socket.broadcast.emit('nottyping', socket.data.username);
    }) 
+
+
+   socket.on("disconnect", () => {
+    console.log(socket.data.username, " disconnected");
+  });
 
    //socket.on('addRoom', (room) => {
      //console.log(room)

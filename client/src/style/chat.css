@@ -6,20 +6,22 @@ body {
       letter-spacing: .5px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
+
+    #content-div {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 60%;
+  }
     
     #form {
-      position: absolute;
-      background: #F5F5F5;
-      bottom: 0;
-      left: 0;
-      right: 0; 
-      padding-bottom: .5rem;
-      padding-top: .5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
+      width: 95%;
       display: flex;
-      height: 3rem;
-      width: auto;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      margin-bottom: 1rem;
     }
 
     #input {
@@ -27,7 +29,7 @@ body {
       padding: 1rem 1rem;
       flex-grow: 1;
       border-radius: 2rem;
-      margin: 0.2rem;
+      /* margin: 0.2rem; */
       background-color: rgb(224, 224, 224);
     }
 
@@ -35,7 +37,7 @@ body {
       outline: none;
     }
 
-    #form>button {
+    #form>#send-btn {
       background: #EEA4B3;
       border: none;
       padding: 0 1rem;
@@ -44,6 +46,7 @@ body {
       outline: none;
       color: #fff;
       margin-left: 2rem;
+      height: 2rem; 
     }
 
     #form>button:hover {
@@ -51,27 +54,21 @@ body {
       cursor: pointer;
     }
 
-    #messages {
-      width: 100%;
+    #content-div > #chat-container > #messages {
       display: flex;
+      flex: 1;
+      max-width: 90%;
       flex-direction: column;
       row-gap: 2.5rem;
-      left: 0;
       list-style-type: none;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      left: 1rem;
-      top: 6rem;
-      height: 70%;
-     overflow: hidden; 
+      height: 100%; 
       overflow-y: scroll;
       color: white;
+      margin-bottom: .5rem;
     }
 
     #messages>li {
-      width: auto;
-
+      width: auto; 
       word-wrap: break-word;
       text-align: right;
       padding: .9rem 3rem;
@@ -87,58 +84,50 @@ body {
       color: black;
     }
 
-    .is-typing {
+    #typing {
+      width: 100%;
+      text-align: left;
       font-family: Raleway, Arial;
+      padding-left: 1rem;
+      padding-bottom: 3px;
       font-weight: 200;
       font-style: italic;
-      position: absolute;
-      left: 1rem;
-      bottom: 3rem;
       color: #808080;
     }
 
-    #container {
+   #container {
       display: flex;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background-color: #F5F5F5;
-    }
+    }  
 
-    #content-div {
-      height: auto;
-      overflow-y: scroll;
-      margin-bottom: .1rem;
-      position: relative;
+    #chat-container {
       display: flex;
-      row-gap: .7rem;
-      flex-direction: column-reverse;
-      justify-content: center;
-      align-items: center;
-      width: 60%;
-      padding: 2rem;
-      padding-top: 0;
-      position: relative;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
 
     #roomHeader {
       display: flex;
       flex-direction: row-reverse;
       width: 80%;
+      height: 1rem;
       align-items: center;
-      justify-content: space-between;   
+      justify-content: space-between;
+      padding-left: 3rem; 
     } 
 
     .leave-btn {
       font-size: 1rem;
     } 
 
-    .room-info {
-      width: 50%;
-    }
+    .leave-btn:hover {
+      cursor: pointer;
+    } 
 
-    .room-info h3 {
-      text-align: center;
-    }
 
 
 ::-webkit-scrollbar {

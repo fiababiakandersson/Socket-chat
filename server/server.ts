@@ -13,9 +13,9 @@ io.use((socket: Socket, next) => {
   socket.data.username = username;
   next();
 });
-
 io.on("connection", (socket) => {
   console.log("a user connected");
+  
 
   if (socket.data.username) {
     socket.emit("connected", socket.data.username);
@@ -37,7 +37,7 @@ io.listen(4000);
    io.emit("chat message", message);
   });
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    console.log(socket.data.username, " disconnected");
   });
   */
  

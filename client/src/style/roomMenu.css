@@ -30,7 +30,7 @@
     max-width: 80px; 
     max-height: 50px;
     margin: .5rem;
-    margin-bottom: 3rem;
+    margin-left: 2rem;
 }
 
 .roomInputBtn:hover {
@@ -39,12 +39,12 @@
 }
 
 .roomInput {
+    width: 60%;
     background-color: rgb(224, 224, 224);
     padding: .8rem;
     border-radius: 20px;
     border: none;
-    margin: .5rem;
-    margin-bottom: 3rem;   
+    margin: .5rem;  
 }
 
 .roomInput:focus {
@@ -64,7 +64,7 @@
     width: 40%;
     height: 100vh;
     background-color: #797595;
-    position: relative;
+   position: relative;
   }
 
 #add-room-icon {
@@ -73,6 +73,8 @@
    align-items: center;
    color: #f5aebc;
    bottom: 0;
+   left: 0;
+   padding: 1rem;
 }
 
 #add-room-icon:hover {
