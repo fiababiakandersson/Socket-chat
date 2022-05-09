@@ -238,9 +238,9 @@ socket.on("roomList", (rooms) => {
     roomName.innerText = room;
     roomContainer?.append(roomName)
      roomName.addEventListener('click', () => {
+       socket.emit("join", room);
        renderRoomInfo(room, roomName)
       //test 
-      socket.emit("join", room);
       
     })
   }
@@ -264,7 +264,7 @@ function renderRoomInfo (room: string, roomName: HTMLElement) {
       }
 
 
-       socket.emit("join", room);
+       //socket.emit("join", room);
       console.log(room); 
 
        //Leave room
@@ -306,7 +306,7 @@ socket.on("joined", (room) => {
 
   joinedRoom = room;
   console.log(room)
-  //renderForm(room);
+  renderForm(room);
 
 });
 
