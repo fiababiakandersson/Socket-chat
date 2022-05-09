@@ -1,4 +1,6 @@
-# Socket.io with Typescript
+# CHATTIE 💬💜
+
+Chattie is a chat-based app that allows users to chat with each other in real time. The communication is made with socket.io. Here you can "log in" with a name and create a room to start chatting. The rooms are displayed in a list that users can click on.
 
 ## Install & Run
 
@@ -26,3 +28,11 @@ Open two terminals and run the following commands
 Run the follow command to remove all three node_modules folders
 
 - `npm run rm-node-modules`.
+
+### Created by
+
+(Fia Andersson)[https://github.com/fiababiakandersson]
+<br/>
+(Sara Lindqvist)[https://github.com/saralindqvist]
+<br/>
+(Rosanna Pistone)[https://github.com/rosannapistone]
