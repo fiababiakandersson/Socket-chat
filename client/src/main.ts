@@ -1,6 +1,7 @@
+import "./style/chat.css";
 import './style/nameForm.css';
 import './style/roomMenu.css';
-import "./style/roomList.css";
+import "./style/roomList.css"; 
 
 import { io, Socket } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "../../types";
@@ -42,6 +43,7 @@ function renderNameInput() {
   let nameInputBtn = document.createElement("button");
   nameInputBtn.classList.add("nameBtn");
   nameInputBtn.innerText = "Start Messaging";
+  nameContainer.append(nameInputHeader, nameInput, nameInputBtn);
   nameInputBtn.addEventListener("click", () => {
     nameContainer.style.display = "none"
    
@@ -52,7 +54,6 @@ function renderNameInput() {
     socket.auth = { username: nameInput.value };
     socket.connect();  
   });
-  nameContainer.append(nameInputHeader, nameInput, nameInputBtn);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -64,7 +65,7 @@ function usernameInMenu() {
   usernameContainer.style.display = "initial";
   const nameContainer = document.getElementById('usernameContainer')! ;
   const welcomeText = document.createElement("h2");
-  welcomeText.innerText = `${joinedUsername}`;
+  welcomeText.innerText = `Welcome ${joinedUsername}`;
   nameContainer.textContent = "";
   nameContainer?.append(welcomeText);
 }
@@ -148,7 +149,6 @@ function renderForm(room: string) {
     isTyping.innerHTML = username + " is typing...";
   });
    socket.on("nottyping", () => {
-      //isTyping.style.display = "none"
       isTyping.innerHTML = ""
 })
 
@@ -156,7 +156,7 @@ function renderForm(room: string) {
     console.log('klickat')
     event.preventDefault();
     if (chatInput.value.length) {
-    //  socket.emit("message", chatInput.value, joinedRoom);
+      socket.emit("message", chatInput.value, joinedRoom);
     } else {
       console.log("Not allowed to send empty messages!");
     }
