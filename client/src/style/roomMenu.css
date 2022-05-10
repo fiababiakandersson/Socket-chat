@@ -96,58 +96,16 @@ h2 {
     display: flex;
     justify-content: center;
 }
-/* @media (max-width: 800px) {
 
-    .addRoomContainer {
-        flex-direction: column;
-        row-gap: 2;
-    }
-
-    #add-room {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .roomInput {
-        margin-bottom: 1rem;
-    }
-
-} */
-
-
+/* Media Queries */
 @media (max-width: 520px) {
     #room-menu {
         width: 100%;
-        height: 30rem;  
+        height: 100%;  
     }  
-}
 
-  /*   .roomInput {
-        width: 100px;
-        margin-bottom: .5rem;
-        margin-left: 0;
+    #room-container {
+        max-height: 13rem;
+        overflow-y: scroll;
     }
-
-    .roomInputBtn {
-        margin-left: 1rem;
-    } */
-
-  
-
-/* @media (max-width: 420px) {
-
-.logo {
-    max-width: 8rem;
 }
-
-}
-
-@media (max-width: 345px) {
-
-
-
-#add-room-icon {
-    margin-bottom: 0;
-}
-
-} */

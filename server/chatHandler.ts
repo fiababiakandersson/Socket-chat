@@ -17,12 +17,8 @@ export default (io: Server, socket: Socket) => {
        if (true) {
         io.emit("roomList", getRooms(io));
       }
-      console.log(io.sockets.adapter.rooms)
       socket.emit("joined", room);
-      console.log('har joinat', room)
     });
-
-
 
      socket.on("leave", (room) => {
        console.log('lämnat', room)
@@ -31,9 +27,7 @@ export default (io: Server, socket: Socket) => {
       io.emit("roomList", getRooms(io))
     }) 
 
-
     socket.on("message", (message, to) => {
-      console.log(message, to);
 
       if (!socket.data.username) {
         return socket.emit("_error", "Missing username");
@@ -42,9 +36,8 @@ export default (io: Server, socket: Socket) => {
       io.to(to).emit("message", message, {
         id: socket.id,
         username: socket.data.username,
-      }); //socket.id för privat chat
+      }); 
     });
-
 
     /* if socket is typing or not */
     socket.on('typing', () =>{
@@ -55,27 +48,7 @@ export default (io: Server, socket: Socket) => {
     socket.broadcast.emit('nottyping', socket.data.username);
    }) 
 
-
    socket.on("disconnect", () => {
     console.log(socket.data.username, " disconnected");
   });
-
-   //socket.on('addRoom', (room) => {
-     //console.log(room)
-    // const shouldBroadcastRooms: boolean = !getRooms(io).includes(room);
-     //io.emit("roomList", getRooms(io))
-    //  if (true) {
-    //    io.emit("roomList", room, getAddedRooms(io)); //ska göras innan joinar
-     // } 
-  // })
-
-
-   //hm oklar
-  /*  socket.on("disconnecting", () => {
-    for (const room of socket.rooms) {
-      if (room !== socket.id) {
-        socket.to(room).emit("user has left", socket.id);
-      }
-    }
-  }); */
 }

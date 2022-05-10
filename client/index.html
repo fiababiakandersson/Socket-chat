@@ -1,52 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chattie</title>
-  <link rel="stylesheet" href="./src/style/mediaQuery.css">
-  <link rel="stylesheet" href="./src/style/chat.css">
-  <link rel="stylesheet" href="./src/style/nameForm.css">
-  <link rel="stylesheet" href="./src/style/roomList.css">
-  <link rel="stylesheet" href="./src/style/roomMenu.css">
-  <link rel="shortcut icon" href="./src/Assets/favicon-chattie.png" type="image/x-icon">
-  <script src="https://kit.fontawesome.com/35d2c85f84.js" crossorigin="anonymous"></script>
-  <script defer type="module" src="./src/main.ts"></script>
-  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <div id="room-menu">
-      <img class="logo" src="./src/Assets/logo.png">
-      <div id="usernameContainer"></div>
-      <div id="room-container">
-       <div class="room-heading">
-          <h3>Rooms</h3>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chattie</title>
+    <!-- Stylesheets and imports -->
+    <link rel="stylesheet" href="./src/style/chat.css" />
+    <link rel="stylesheet" href="./src/style/nameForm.css" />
+    <link rel="stylesheet" href="./src/style/roomList.css" />
+    <link rel="stylesheet" href="./src/style/roomMenu.css" />
+    <link
+      rel="shortcut icon"
+      href="./src/Assets/favicon-chattie.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!-- Scripts -->
+    <script
+      src="https://kit.fontawesome.com/35d2c85f84.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="room-menu">
+        <img class="logo" src="./src/Assets/logo.png" />
+        <div id="usernameContainer"></div>
+        <div id="room-container">
+          <div class="room-heading">
+            <h3>Rooms</h3>
           </div>
-        </div> 
-        <div id="add-room">
-          <span id="add-room-icon" class="material-icons">
-            add_circle
-          </span>
         </div>
-      </div> 
-    
-  <div id="content-div">
-
-    
-    <div id="name-container"></div>
-
-    <div id="chat-container">
-    <h3 id="roomHeader"></h3>
-    <ul id="messages"></ul>
-    <div id="typing"></div>
-    <form autocomplete="false" id="form">
-    <input id="input" autocomplete="false" maxlength="270" type="text">
-      <button id="send-btn" type="submit">Send</button>
-    </form>
-  </div>
-
-  </div>
-  </div>
-</body>
+        <div id="add-room">
+          <span id="add-room-icon" class="material-icons"> add_circle </span>
+        </div>
+      </div>
+      <div id="content-div">
+        <div id="name-container"></div>
+        <div id="chat-container">
+          <h3 id="roomHeader"></h3>
+          <ul id="messages"></ul>
+          <div id="typing"></div>
+          <form autocomplete="false" id="form">
+            <input
+              id="input"
+              autocomplete="false"
+              maxlength="270"
+              type="text"
+            />
+            <button id="send-btn" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

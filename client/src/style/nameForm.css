@@ -1,24 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Mulish:wght@300;400&display=swap');
 
- 
-/* #content-div {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 60%;
-} */
 
-#name-container{
+#name-container {
     height: 100%;
     display: flex;
     position: relative;
-    /* justify-content: center; */
+    justify-content: center; 
     align-items: center; 
     flex-direction: column;
     gap: 2rem;
 }
-
 
 .nameBtn {
     letter-spacing: 1px;
@@ -60,36 +52,3 @@ h3 {
     font-weight: bold;
     font-size: 1.5rem;
 }
-
-/* @media (max-width: 600px) {
-
-   #nameInput {
-    min-width: 200px;
-    }
-
-    h3 {
-        font-size: 1rem;
-    }
-
-}
-
-@media (max-width: 420px) {
-
-    #nameInput {
-        min-width: 145px;
-    }
-}
-
-@media (max-width: 320px) {
-
-    #nameInput {
-        min-width: 100px;
-      
-    }
-
-    .nameBtn {
-        width:auto;
-        padding: .5rem;
-    }
-
-} */
