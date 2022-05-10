@@ -42,7 +42,7 @@
 #nameInput {
     background-color: rgb(224, 224, 224);
     padding: .8rem;
-    min-width: 300px;
+    min-width: 80%;
     border-radius: 20px;
     border: none;
 }
