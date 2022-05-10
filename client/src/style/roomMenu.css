@@ -96,7 +96,7 @@ h2 {
     display: flex;
     justify-content: center;
 }
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
 
     .addRoomContainer {
         flex-direction: column;
@@ -112,13 +112,17 @@ h2 {
         margin-bottom: 1rem;
     }
 
-}
-
+} */
 
 
 @media (max-width: 520px) {
+    #room-menu {
+        width: 100%;
+        height: 30rem;  
+    }  
+}
 
-    .roomInput {
+  /*   .roomInput {
         width: 100px;
         margin-bottom: .5rem;
         margin-left: 0;
@@ -126,11 +130,11 @@ h2 {
 
     .roomInputBtn {
         margin-left: 1rem;
-    }
-    
-}
+    } */
 
-@media (max-width: 420px) {
+  
+
+/* @media (max-width: 420px) {
 
 .logo {
     max-width: 8rem;
@@ -146,4 +150,4 @@ h2 {
     margin-bottom: 0;
 }
 
-}
+} */
