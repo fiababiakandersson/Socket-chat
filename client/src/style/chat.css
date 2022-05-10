@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap');
 
-body {
+  html {
+    background-color: #F5F5F5;
+  }
+
+    body {
       margin: 0;
       height: 100vh;
       letter-spacing: .5px;
@@ -12,9 +16,10 @@ body {
       flex-direction: column;
       height: 100%;
       width: 60%;
-  }
+    }
     
     #form {
+      background-color: #F5F5F5;
       width: 95%;
       display: flex;
       flex-direction: row;
@@ -29,7 +34,6 @@ body {
       padding: 1rem 1rem;
       flex-grow: 1;
       border-radius: 2rem;
-      /* margin: 0.2rem; */
       background-color: rgb(224, 224, 224);
     }
 
@@ -97,7 +101,6 @@ body {
 
    .container {
       display: flex;
-      /* width: 100%; */
       height: 100vh;
       background-color: #F5F5F5;
     }  
@@ -128,29 +131,34 @@ body {
       cursor: pointer;
     } 
 
+  ::-webkit-scrollbar {
+    width: .5px;
+    background-color: transparent;
+  } 
 
+/* Media Queries */
+@media (max-width: 968px) {
 
-::-webkit-scrollbar {
-  width: 20px;
-} 
-
-/* @media (max-width: 845px) {
-  #form>button {
+  #input {
     margin-left: .5rem;
+    margin-bottom: .5rem;
   }
-} */
+
+  #content-div > #chat-container > #messages {
+    padding-left: 1.5rem;
+    
+  }
+}
 
 @media (max-width: 520px) {
-  /* #form>button {
-    padding: 3px;
-    justify-content: center;
-    width: 50px;
-  } */
+
+  #chat-container {
+      max-height: 22rem;
+    }
 
   .container {
     flex-direction: column;
     align-items: center;
-    height: auto;
   }
 
   #content-div {
@@ -160,31 +168,19 @@ body {
 
   #content-div > #chat-container > #messages {
     row-gap: .5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   #messages>li {padding: .5rem 1rem;}
 
- /*  #content-div {
-    width: 100%;
+  #form {
+    padding: 0;
+    margin: 0;
   }
 
-  #input {
-    width: 100px;
-  }
-
-  #messages li {
-    font-size: 12px;
-    padding: 1rem;
-  }
-
-  #content-div {
-    padding: 1rem;
+  #typing {
+    width: 90%;
+    padding-left: .5rem;
   }
 }
-
-@media (max-width: 380px) {
-  #form {
-    flex-direction: column;
-    height: 80px;
-  }*/
-} 

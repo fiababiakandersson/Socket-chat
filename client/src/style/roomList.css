@@ -8,8 +8,7 @@
     padding: 1rem;
     border-radius: 15px;
     max-width: 90%;
-    text-align: center;
-    
+    text-align: center; 
 }
 
 .room-name:hover {
@@ -24,55 +23,3 @@
     align-items: center;
     width: 90%;
 }
-
-/* @media (max-width: 905px) {
-
-   .roomContainer {
-    min-width: 16rem;
-    }
-
-    .room-name {
-        margin-left: 0;
-    }
-
-}
-
-@media (max-width: 760px) {
-
-    .roomContainer {
-     min-width: 12rem;
-     }
- 
- }
-
- @media (max-width: 520px) {
-
-    .roomContainer {
-        margin-left: 4rem;
-    }
-    .room-name {
-       padding: .5;
-       margin: 0;
-       width: 100px;
-    }
-
-    p {
-        font-size: 13px;
-        margin: 0;
-        padding: 0;
-    }
-
- }
-
- @media (max-width: 350px) {
-
-    .room-name {
-        width: 80px;
-        height: 20px;
-        overflow-y: hidden;
-    }
-
-    
-
- }
- */
